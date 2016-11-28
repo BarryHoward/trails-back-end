@@ -35,6 +35,12 @@ class UserController {
 		// }
 	}
 
+	* index (request, response){
+		const user_list = yield User.query().table('users')
+		.orderBy('username', 'asc')
+		response.status(200).json(user_list)
+	}
+
 }
 
 module.exports = UserController
