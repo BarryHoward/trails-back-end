@@ -27,7 +27,7 @@ class UserController {
 			console.log("hi");
 			let data = request.only('username', 'password', 'email', 'info')
 			data.password = yield Hash.make('password')
-			data.admin = false;
+			// data.admin = false;
 			let user = yield User.create(data)
 			response.status(201).json(user)
 		// } else {
