@@ -18,3 +18,8 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+
+Route.post('/login', 'UserController.login');
+
+Route.post('/users', 'UserController.create');
