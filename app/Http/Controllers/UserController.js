@@ -24,6 +24,7 @@ class UserController {
 	* create (request, response){
 		// let admin = request.authUser;
 		// if (admin.admin){
+			console.log("hi");
 			let data = request.only('username', 'password', 'email', 'info')
 			data.password = yield Hash.make('password')
 			data.admin = false;
