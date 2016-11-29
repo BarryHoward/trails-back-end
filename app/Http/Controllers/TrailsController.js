@@ -48,7 +48,7 @@ class TrailsController {
 
 			yield trail.delete();
 			console.log("deleted")
-			response.status(204).json(trail)
+			response.status(204).send()//.json(trail)
 		}
 
 	}
