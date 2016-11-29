@@ -3,7 +3,7 @@
 const Trail = use('App/Model/Trail')
 const Waypoint = use('App/Model/Waypoint')
 
-class TrailController {
+class TrailsController {
 
 	* create (request, response){
 			let data = request.only('title', 'waypoints')
@@ -21,4 +21,4 @@ class TrailController {
 
 }
 
-module.exports = TrailController
+module.exports = TrailsController
