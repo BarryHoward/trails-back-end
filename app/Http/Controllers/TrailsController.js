@@ -38,8 +38,8 @@ class TrailsController {
 			response.status(404).json({error: "Trail not found"})
 		} else if (trail.title !== data.title  && exists){
 			response.status(409).json({error: "Trail Name already taken!"})
-		} else if (!data.waypoints){
-			response.status(400).json({error: "Can't specify a trail without waypoints!"})
+		// } else if (!data.waypoints){
+		// 	response.status(400).json({error: "Can't specify a trail without waypoints!"})
 		} else {
 			trail.title = data.title
 			yield trail.save()
