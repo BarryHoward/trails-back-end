@@ -26,6 +26,7 @@ class TrailsController {
 
 	* index (request, response){
 		let trails_list = yield Trail.query().table('trails')
+		.orderBy('created_at', 'desc')
 		response.status(200).json(trails_list)
 	}
 
@@ -34,8 +35,8 @@ class TrailsController {
 		let waypoints_list = yield Waypoint.query().table('waypoints')
 			.where("trail_id", trail_id)
 
-		let waypoint_test = yield Trail.waypoints();
-		console.log(waypoint_test)
+		// let waypoint_test = yield Trail.waypoints();
+		// console.log(waypoint_test)
 		response.status(200).json(waypoints_list)
 	}
 
