@@ -34,14 +34,12 @@ class TrailsController {
 		response.status(200).json(trails_list)
 	}
 
-	* waypoints (request, response){
+	* single (request, response){
 		let trail_id = request.param("trail_id")
+		let trail = yield Trail.findBy('id', trail_id)
 		let waypoints_list = yield Waypoint.query().table('waypoints')
 			.where("trail_id", trail_id)
-
-		// let waypoint_test = yield Trail.waypoints();
-		// console.log(waypoint_test)
-		response.status(200).json(waypoints_list)
+		response.status(200).json(trailInfo: trail, waypoints: waypoints_list)
 	}
 
 }
