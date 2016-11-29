@@ -26,5 +26,5 @@ Route.post('/users', 'UserController.create');
 Route.get('/users', 'UserController.index');
 
 Route.get('/trails', 'TrailsController.index');
-Route.get('/trails/:trail_id', 'TrailsController.show');
+Route.get('/trails/:trail_id', 'TrailsController.waypoints');
 Route.post('/trails', 'TrailsController.create');
