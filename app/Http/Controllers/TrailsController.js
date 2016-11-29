@@ -42,21 +42,21 @@ class TrailsController {
 			trail.fill(data.title)
 			yield trail.save()
 			// delete old waypoints
-			const old_waypoints = yield Waypoint.query().table('waypoints')
-				.where('trail_id', trail_id)
+			// const old_waypoints = yield Waypoint.query().table('waypoints')
+			// 	.where('trail_id', trail_id)
 
-			for (var i=0; i<old_waypoints.length; i++){
-				let deletedWaypoint = yield Waypoint.find(old_waypoints[i].id)
-				yield deletedWaypoint.delete();
-			}
+			// for (var i=0; i<old_waypoints.length; i++){
+			// 	let deletedWaypoint = yield Waypoint.find(old_waypoints[i].id)
+			// 	yield deletedWaypoint.delete();
+			// }
 
 			// make new waypoints
-			// let waypoints = [];
-			// for (var i=0; i<data.waypoints.length; i++){
-			// 	data.waypoints[i].trail_id = trail.id
-			// 	let waypoint = yield Waypoint.create(data.waypoints[i])
-			// 	waypoints.push(waypoint)
-			// }
+			let waypoints = [];
+			for (var i=0; i<data.waypoints.length; i++){
+				data.waypoints[i].trail_id = trail.id
+				let waypoint = yield Waypoint.create(data.waypoints[i])
+				waypoints.push(waypoint)
+			}
 
 			const new_waypoints = yield Waypoint.query().table('waypoints')
 				.where('trail_id', trail_id)
