@@ -38,6 +38,7 @@ class TrailsController {
 		let trail_id = request.param("trail_id")
 		let trail = yield Trail.findBy('id', trail_id)
 		let waypoints_list = yield Waypoint.query().table('waypoints')
+			.select('lat', 'lng')
 			.where("trail_id", trail_id)
 		response.status(200).json({trailInfo: trail, waypoints: waypoints_list})
 	}
