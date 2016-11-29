@@ -28,6 +28,42 @@ class TrailsController {
 			}
 	}
 
+	* update(request, response){
+		let data = request.only('title', 'waypoints') // get new data
+		let trail_id = request.param("trail_id") // get id of current trail
+		let trail = yield Trail.findBy('id', trail_id) // get current trail
+		let exists = yield Trail.findBy('title', data.title) // check if title already exists in database
+
+		if (!trail){
+			response.status(404).json({error: "Trail not found"})
+		} else if (trail.title !== data.title  && exists){
+			response.status(409).json({error: "Trail Name already taken!"})
+		} else {
+			trail.fill(data.title)
+			yield trail.save()
+			// delete old waypoints
+			const old_waypoints = yield Waypoint.query().table('waypoints')
+				.where('trail_id', trail_id)
+
+			for (var i=0; i<old_waypoints.length; i++){
+				let deletedWaypoint = yield Waypoint.find(old_waypoints[i].id)
+				yield deletedWaypoint.delete();
+			}
+
+			// make new waypoints
+			let waypoints = [];
+			for (var i=0; i<data.waypoints.length; i++){
+				data.waypoints[i].trail_id = trail.id
+				let waypoint = yield Waypoint.create(data.waypoints[i])
+				waypoints.push(waypoint)
+			}
+			response.status(201).json({trailInfo: trail, waypoints: waypoints})
+
+
+			response.status(201).json(trail)
+		}
+	}
+
 	* index (request, response){
 		let trails_list = yield Trail.query().table('trails')
 		.orderBy('created_at', 'desc')
