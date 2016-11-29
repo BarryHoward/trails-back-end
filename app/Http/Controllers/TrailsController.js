@@ -39,7 +39,7 @@ class TrailsController {
 		let trail = yield Trail.findBy('id', trail_id)
 		let waypoints_list = yield Waypoint.query().table('waypoints')
 			.where("trail_id", trail_id)
-		response.status(200).json(trailInfo: trail, waypoints: waypoints_list)
+		response.status(200).json({trailInfo: trail, waypoints: waypoints_list})
 	}
 
 }
