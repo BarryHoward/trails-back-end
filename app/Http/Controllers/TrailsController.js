@@ -57,10 +57,10 @@ class TrailsController {
 				let waypoint = yield Waypoint.create(data.waypoints[i])
 				waypoints.push(waypoint)
 			}
-			response.status(201).json({trailInfo: trail, waypoints: waypoints})
 
-
-			response.status(201).json(trail)
+			const new_waypoints = yield Waypoint.query().table('waypoints')
+				.where('trail_id', trail_id)
+			response.status(201).json({trailInfo: trail, waypoints: new_waypoints})
 		}
 	}
 
