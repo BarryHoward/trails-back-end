@@ -50,6 +50,11 @@ class TrailsController {
 				yield deletedWaypoint.delete();
 			}
 
+			// test
+
+			data.waypoints=[];
+			data.waypoints[0] = {lat: -4, lng: 5};
+
 			// make new waypoints
 			let waypoints = [];
 			for (var i=0; i<data.waypoints.length; i++){
