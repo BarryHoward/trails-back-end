@@ -39,16 +39,16 @@ class TrailsController {
 		} else if (trail.title !== data.title  && exists){
 			response.status(409).json({error: "Trail Name already taken!"})
 		} else {
-			trail.fill(data.title)
-			yield trail.save()
+			// trail.fill(data.title)
+			// yield trail.save()
 			// delete old waypoints
-			// const old_waypoints = yield Waypoint.query().table('waypoints')
-			// 	.where('trail_id', trail_id)
+			const old_waypoints = yield Waypoint.query().table('waypoints')
+				.where('trail_id', trail_id)
 
-			// for (var i=0; i<old_waypoints.length; i++){
-			// 	let deletedWaypoint = yield Waypoint.find(old_waypoints[i].id)
-			// 	yield deletedWaypoint.delete();
-			// }
+			for (var i=0; i<old_waypoints.length; i++){
+				let deletedWaypoint = yield Waypoint.find(old_waypoints[i].id)
+				yield deletedWaypoint.delete();
+			}
 
 			// make new waypoints
 			let waypoints = [];
