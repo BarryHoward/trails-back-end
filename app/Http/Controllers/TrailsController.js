@@ -25,7 +25,7 @@ class TrailsController {
 	}
 
 	* index (request, response){
-		let trails_list = yield Trails.query().table('trails')
+		let trails_list = yield Trail.query().table('trails')
 		response.status(200).json(trails_list)
 	}
 
