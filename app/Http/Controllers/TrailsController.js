@@ -49,7 +49,7 @@ class TrailsController {
 			console.log(old_waypoints)
 			yield trail.delete();
 			console.log("deleted")
-			response.status(204).json({text: "deleted"})
+			response.status(204)
 		}
 
 	}
