@@ -38,9 +38,11 @@ class TrailsController {
 			response.status(404).json({error: "Trail not found"})
 		} else if (trail.title !== data.title  && exists){
 			response.status(409).json({error: "Trail Name already taken!"})
+		} else if (!data.waypoints){
+			response.status(400).json({error: "Can't specify a trail without waypoints!"})
 		} else {
-			// trail.fill(data.title)
-			// yield trail.save()
+			trail.title = data.title
+			yield trail.save()
 			// delete old waypoints
 			const old_waypoints = yield Waypoint.query().table('waypoints')
 				.where('trail_id', trail_id)
@@ -51,7 +53,6 @@ class TrailsController {
 			}
 
 			// test
-
 			data.waypoints=[];
 			data.waypoints[0] = {lat: -4, lng: 5};
 
