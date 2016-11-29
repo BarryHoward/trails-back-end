@@ -48,7 +48,7 @@ class TrailsController {
 
 			yield trail.delete();
 			console.log("deleted")
-			response.status(204).send()//.json(trail)
+			response.status(204).send()
 		}
 
 	}
@@ -68,6 +68,7 @@ class TrailsController {
 		} else {
 			trail.title = data.title
 			yield trail.save()
+			
 			// delete old waypoints
 			const old_waypoints = yield Waypoint.query().table('waypoints')
 				.where('trail_id', trail_id)
