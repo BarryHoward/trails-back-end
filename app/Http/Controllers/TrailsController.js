@@ -34,12 +34,14 @@ class TrailsController {
 		let trail = yield Trail.findBy('id', trail_id) // get current trail
 		let exists = yield Trail.findBy('title', data.title) // check if title already exists in database
 
+		console.log(trail.title, data.title, exists)
+
 		if (!trail){
 			response.status(404).json({error: "Trail not found"})
 		} else if (trail.title !== data.title  && exists){
 			response.status(409).json({error: "Trail Name already taken!"})
-		// } else if (!data.waypoints){
-		// 	response.status(400).json({error: "Can't specify a trail without waypoints!"})
+		} else if (!data.waypoints){
+			response.status(400).json({error: "Can't specify a trail without waypoints!"})
 		} else {
 			trail.title = data.title
 			yield trail.save()
@@ -51,10 +53,6 @@ class TrailsController {
 				let deletedWaypoint = yield Waypoint.find(old_waypoints[i].id)
 				yield deletedWaypoint.delete();
 			}
-
-			// test
-			data.waypoints=[];
-			data.waypoints[0] = {lat: -4, lng: 5};
 
 			// make new waypoints
 			let waypoints = [];
