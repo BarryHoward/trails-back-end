@@ -10,7 +10,7 @@ class TrailsController {
 			let trailData = {title: data.title}
 
 			if (yield User.findBy('title', data.title)){
-				response.status(409).json{error: "Trail Name already taken!"}
+				response.status(409).json({error: "Trail Name already taken!"})
 			} else {
 				let trail = yield Trail.create(trailData)
 				let waypoints = [];
