@@ -29,5 +29,5 @@ Route.get('/trails', 'TrailsController.index');
 Route.get('/trails/:trail_id', 'TrailsController.single');
 
 Route.post('/trails', 'TrailsController.create');
-Route.patch('/trails/:trail_id', 'TrailsConroller.update')
+Route.patch('/trails/:trail_id', 'TrailsController.update')
 Route.delete('/trails/:trail_id', 'TrailsController.delete')
