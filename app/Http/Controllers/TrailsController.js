@@ -44,6 +44,7 @@ class TrailsController {
 				yield deletedWaypoint.delete();
 			}
 			yield trail.delete();
+			response.status(204)
 		}
 
 	}
