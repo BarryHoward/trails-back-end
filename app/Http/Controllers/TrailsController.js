@@ -10,8 +10,11 @@ class TrailsController {
 			let trailData = {title: data.title}
 
 			let exists = yield Trail.findBy('title', data.title)
+			let way = data.waypoints;
 			if (exists){
 				response.status(409).json({error: "Trail Name already taken!"})
+			} else if (!way){
+				response.status(400).json({error: "Can't specify a trail without waypoints!"})
 			} else {
 				let trail = yield Trail.create(trailData)
 				let waypoints = [];
