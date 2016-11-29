@@ -19,6 +19,18 @@ class TrailsController {
 			response.status(201).json({trail: trail, waypoints: waypoints})
 	}
 
+	* index (request, response){
+		let trails_list = yield Trails.query().table('trails')
+		response.status(200).json(trails_list)
+	}
+
+	* waypoints (request, response){
+		let trail_id = request.param("trail_id")
+		let waypoints_list = yield Waypoints.query().table('waypoints')
+			.where("trail_id", trail_id)
+		response.status(200).json(waypoints_list)
+	}
+
 }
 
 module.exports = TrailsController
