@@ -8,8 +8,8 @@ class WaypointTableSchema extends Schema {
     this.create('waypoints', (table) => {
       table.increments()
       table.integer('trail_id').unsigned().references('id').inTable('trails')
-      table.number('lat')
-      table.number('lng')
+      table.float('lat')
+      table.float('lng')
       table.timestamps()
     })
   }
