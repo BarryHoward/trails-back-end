@@ -104,6 +104,7 @@ class TrailsController {
 		let waypoints_list = yield Waypoint.query().table('waypoints')
 			.select('lat', 'lng', 'totalDistance')
 			.where("trail_id", trail_id)
+			.orderBy('totalDistance', 'asc')
 		response.status(200).json({trailInfo: trail, waypoints: waypoints_list})
 	}
 
