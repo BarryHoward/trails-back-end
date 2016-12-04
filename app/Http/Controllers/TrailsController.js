@@ -62,7 +62,7 @@ class TrailsController {
 		let trails_list = yield Trail.query().table('trails')
 		.orderBy('created_at', 'desc')
 		let waypoint_list = yield Waypoint.query().table('waypoints')
-		response.status(200).json(trails_list, waypoint_list)
+		response.status(200).json(waypoint_list)
 	}
 
 	* single (request, response){
