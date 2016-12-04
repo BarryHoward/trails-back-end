@@ -69,6 +69,7 @@ class TrailsController {
 			trail.title = data.title
 			trail.path = data.path
 			yield trail.save()
+			response.status(201).json(trail)
 			
 			// // delete old waypoints
 			// const old_waypoints = yield Waypoint.query().table('waypoints')
