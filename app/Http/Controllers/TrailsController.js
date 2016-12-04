@@ -22,7 +22,7 @@ class TrailsController {
 	* delete(request, response){
 		let trail_id = request.param("trail_id") // get id of current trail
 		let trail = yield Trail.findBy('id', trail_id) // get current trail
-
+		console.log(trail)
 		if (!trail){
 			response.status(404).json({error: "Trail not found"})
 		} else {
