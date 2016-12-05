@@ -30,7 +30,7 @@ class PointsController {
 	* update(request, response){
 		let data = request.only('lat', 'lng', 'shelter', 'water',
 			'campsite', 'view', 'parking', 'road', 'resupply', 'title',
-			'description', 'img_url', 'public')
+			'description', 'img_url', 'public', 'trail_id', 'user_id')
 		let point_id = request.param("point_id") // get id of current trail
 		let point = yield Point.findBy('id', point_id) // get current trail
 
