@@ -21,13 +21,19 @@ Route.on('/').render('welcome')
 
 
 Route.post('/login', 'UserController.login');
-
 Route.post('/users', 'UserController.create');
 Route.get('/users', 'UserController.index');
 
 Route.get('/trails', 'TrailsController.index');
-Route.get('/trails/:trail_id', 'TrailsController.single');
+Route.get('/trails/:trail_id', 'TrailsController.show');
 
 Route.post('/trails', 'TrailsController.create');
 Route.patch('/trails/:trail_id', 'TrailsController.update')
 Route.delete('/trails/:trail_id', 'TrailsController.delete')
+
+Route.get('points/:point_id', 'PointController.show')
+Route.post('/points', 'PointsController.create')
+Route.patch('points/:point_id', 'PointsController.update')
+Route.delete('points/:point_id', 'PointsController.delete')
+
+

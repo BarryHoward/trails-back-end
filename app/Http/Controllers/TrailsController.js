@@ -50,8 +50,7 @@ class TrailsController {
 		} else if (trail.title !== data.title  && exists){
 			response.status(409).json({error: "Trail Name already taken!"})
 		} else {
-			trail.title = data.title
-			trail.path = data.path
+			trail.fill(data)
 			yield trail.save()
 			response.status(201).json(trail)
 		}
@@ -63,7 +62,7 @@ class TrailsController {
 		response.status(200).json(trails_list)
 	}
 
-	* single (request, response){
+	* show (request, response){
 		let trail_id = request.param("trail_id")
 		let trail = yield Trail.findBy('id', trail_id)
 		// let waypoints_list = yield Waypoint.query().table('waypoints')
