@@ -42,6 +42,7 @@ class TrailsController {
 	* update(request, response){
 		let data = request.only('title', 'path') // get new data
 		let trail_id = request.param("trail_id") // get id of current trail
+		console.log(data);
 		let trail = yield Trail.findBy('id', trail_id) // get current trail
 		let exists = yield Trail.findBy('title', data.title) // check if title already exists in database
 
