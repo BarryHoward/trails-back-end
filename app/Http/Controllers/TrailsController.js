@@ -1,7 +1,6 @@
 'use strict'
 
 const Trail = use('App/Model/Trail')
-const Waypoint = use('App/Model/Waypoint')
 
 class TrailsController {
 
