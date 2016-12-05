@@ -7,6 +7,7 @@ class PointsController {
 		let data = request.only('lat', 'lng', 'shelter', 'water',
 			'campsite', 'view', 'parking', 'road', 'resupply', 'title',
 			'description', 'img_url', 'public')
+		console.log(data)
 		let point = yield Point.create(data)
 		response.status(201).json(point)		
 	}
