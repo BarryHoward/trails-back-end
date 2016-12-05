@@ -28,7 +28,7 @@ class TrailsController {
 			// yield Trail.query().table('points')
 			// 	.where('trail_id', trail_id)
 			// 	.delete();
-
+		console.log(trail.points)
 			yield trail.points.delete()
 
 			// for (var i=0; i<old_waypoints.length; i++){
