@@ -3,9 +3,13 @@
 const Lucid = use('Lucid')
 
 class Trail extends Lucid {
-	waypoints () {
-    	return this.hasMany('App/Model/Waypoint')
+	points () {
+    	return this.hasMany('App/Model/Point')
   	}
+
+  	// hikes () {
+  	// 	return this.hasMany('App/Model/Hike')
+  	// }
 
 }
 
