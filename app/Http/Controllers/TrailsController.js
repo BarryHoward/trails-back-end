@@ -25,8 +25,11 @@ class TrailsController {
 		if (!trail){
 			response.status(404).json({error: "Trail not found"})
 		} else {
-			// let old_waypoints = yield Waypoint.query().table('waypoints')
+			// yield Trail.query().table('points')
 			// 	.where('trail_id', trail_id)
+			// 	.delete();
+
+			yield trail.points.delete()
 
 			// for (var i=0; i<old_waypoints.length; i++){
 			// 	let deletedWaypoint = yield Waypoint.find(old_waypoints[i].id)
@@ -42,7 +45,6 @@ class TrailsController {
 	* update(request, response){
 		let data = request.only('title', 'path') // get new data
 		let trail_id = request.param("trail_id") // get id of current trail
-		console.log(data);
 		let trail = yield Trail.findBy('id', trail_id) // get current trail
 		let exists = yield Trail.findBy('title', data.title) // check if title already exists in database
 
