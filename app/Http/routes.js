@@ -31,6 +31,7 @@ Route.post('/trails', 'TrailsController.create');
 Route.patch('/trails/:trail_id', 'TrailsController.update')
 Route.delete('/trails/:trail_id', 'TrailsController.delete')
 
+Route.get('trails/:trail_id/points', 'PointsController.index')
 Route.get('points/:point_id', 'PointController.show')
 Route.post('/points', 'PointsController.create')
 Route.patch('points/:point_id', 'PointsController.update')
