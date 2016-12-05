@@ -25,11 +25,11 @@ class TrailsController {
 		if (!trail){
 			response.status(404).json({error: "Trail not found"})
 		} else {
-			// yield Trail.query().table('points')
-			// 	.where('trail_id', trail_id)
-			// 	.delete();
-		console.log(trail.points)
-			yield trail.points.delete()
+			yield Trail.query().table('points')
+				.where('trail_id', trail_id)
+				.delete();
+		// console.log(trail.points)
+		// 	yield trail.points.delete()
 
 			// for (var i=0; i<old_waypoints.length; i++){
 			// 	let deletedWaypoint = yield Waypoint.find(old_waypoints[i].id)
