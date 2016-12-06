@@ -25,8 +25,6 @@ class PointsController {
 		let trail_id = request.param("trail_id")
 		let points = yield Point.query().table('points')
 			.where('trail_id', trail_id)
-			.select('id', 'lat', 'lng', 'shelter', 'water', 'campsite', 'view',
-				'parking', 'road', 'resupply')
 		response.status(200).json(points)
 	}
 
