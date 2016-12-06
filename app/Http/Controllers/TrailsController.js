@@ -12,6 +12,7 @@ class TrailsController {
 			response.status(409).json({error: "Trail Name already taken!"})
 		} else {
 			data.user_id = user.id
+			data.username = user.username;
 			let trail = yield Trail.create(data)
 			response.status(201).json(trail)
 		}		
@@ -49,6 +50,7 @@ class TrailsController {
 		} else if (trail.title !== data.title  && exists){
 			response.status(409).json({error: "Trail Name already taken!"})
 		} else {
+			data.username = user.username;
 			trail.fill(data)
 			yield trail.save()
 			response.status(201).json(trail)
