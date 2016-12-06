@@ -57,7 +57,7 @@ class PointsController {
 		let user = request.authUser;
 		let point_id = request.param("point_id") // get id of current trail
 		let point = yield Point.findBy('id', point_id) // get current trail
-		if (!trail){
+		if (!point){
 			response.status(404).json({error: "Point not found"})
 		} else if (point.user_id !== user.id){
 			response.status(403).json({error: "Point does not belong to user"})
