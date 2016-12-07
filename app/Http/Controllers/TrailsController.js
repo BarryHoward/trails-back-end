@@ -6,7 +6,7 @@ class TrailsController {
 
 	* create (request, response){
 		let user = request.authUser;
-		let data = request.only('title', 'path', 'distance', 'max_elevation', 'min_elevation', 'image_url') // get new data
+		let data = request.only('title', 'path', 'distance', 'max_elevation', 'min_elevation', 'img_url', 'description') // get new data
 		let exists = yield Trail.findBy('title', data.title) // check if title already exists in database
 		if (exists){
 			response.status(409).json({error: "Trail Name already taken!"})
