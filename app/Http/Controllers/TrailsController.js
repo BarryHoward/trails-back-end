@@ -41,14 +41,11 @@ class TrailsController {
 		let data = request.only('title', 'path', 'distance', 'max_elevation', 'min_elevation', 'image_url') // get new data
 		let trail_id = request.param("trail_id") // get id of current trail
 		let trail = yield Trail.findBy('id', trail_id) // get current trail
-		let exists = yield Trail.findBy('title', data.title) // check if title already exists in database
 
 		if (!trail){
 			response.status(404).json({error: "Trail not found"})
 		} else if (user.id !== trail.user_id){
 			response.status(403).json({error: "Trail does not belong to user"})
-		} else if (trail.title !== data.title  && exists){
-			response.status(409).json({error: "Trail Name already taken!"})
 		} else {
 			data.username = user.username;
 			trail.fill(data)
