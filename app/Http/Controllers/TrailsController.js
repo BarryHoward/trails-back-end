@@ -38,7 +38,7 @@ class TrailsController {
 
 	* update(request, response){
 		let user = request.authUser;
-		let data = request.only('title', 'path', 'distance', 'max_elevation', 'min_elevation', 'image_url') // get new data
+		let data = request.only('title', 'path', 'distance', 'max_elevation', 'min_elevation', 'img_url', 'description') // get new data
 		let trail_id = request.param("trail_id") // get id of current trail
 		let trail = yield Trail.findBy('id', trail_id) // get current trail
 
