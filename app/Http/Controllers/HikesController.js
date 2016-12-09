@@ -30,7 +30,7 @@ class HikesController {
 		let trails = yield Hike.query().table('hikes')
 			.where('hikes.user_id', user_id)
 			.innerJoin('trails', 'hikes.trail_id', 'trails.id')
-			.groupBy('trails.id')
+			.groupBy('hikes.trail_id')
 		response.status(201).json(trails)	
 	}
 
