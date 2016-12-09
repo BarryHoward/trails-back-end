@@ -29,7 +29,7 @@ class HikesController {
 		let user = request.authUser;
 		let data = request.only('title', 'start_date', 'end_date', 'description', 'path')	
 		let hike_id = request.param("hike_id") // get id of current hike
-		let hike = yield hike.findBy('id', hike_id) // get current hike
+		let hike = yield Hike.findBy('id', hike_id) // get current hike
 
 		if (!hike){
 			response.status(404).json({error: "Hike not found"})
