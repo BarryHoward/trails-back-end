@@ -18,13 +18,13 @@ class HikesController {
 		response.status(200).json(hikes_list)
 	}
 
-	* indexUser(resquest, response){
+	* indexUser(request, response){
 		let user_id = request.param("user_id")
 		let hikes = yield Hike.findBy('id', user_id)
 		response.status(201).json(hikes)
 	}
 
-	* indexUserTrails(resquest, response){
+	* indexUserTrails(request, response){
 		let user_id = request.param("user_id")
 		let trails = yield Hike.query().table('hikes')
 			.where('user_id', user_id)
