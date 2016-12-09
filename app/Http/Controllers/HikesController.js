@@ -12,18 +12,36 @@ class HikesController {
 		response.status(201).json(hike)	
 	}
 
-	// * index(request, response){
-	// 	let trail_id = request.param("trail_id")
-	// 	let hikes = yield hike.query().table('hikes')
-	// 		.where('trail_id', trail_id)
-	// 	response.status(200).json(hikes)
-	// }
+	* index (request, response){
+		let hikes_list = yield Hike.query().table('hikes')
+		.orderBy('created_at', 'desc')
+		response.status(200).json(hikes_list)
+	}
 
-	// * show (request, response){
-	// 	let hike_id = request.param("hike_id")
-	// 	let hike = yield hike.findBy('id', hike_id)
-	// 	response.status(200).json(hike)
-	// }
+	* indexUser(resquest, response){
+		let user_id = request.param("user_id")
+		let hikes = yield Hike.findBy('id', user_id)
+		response.status(201).json(hikes)
+	}
+
+	* indexUserTrails(resquest, response){
+		let user_id = request.param("user_id")
+		let trails = yield Hike.query().table('hikes')
+			.where('user_id', user_id)
+			.innerJoin('trails', 'hikes.trail_id', 'trails.id')
+			.groupBy('trails.id')
+		response.status(201).json(trails)	
+	}
+
+	* indexUserTrailHikes(request, response){
+		let user_id = request.param("user_id")
+		let trail_id = request.param('trail_id')
+		let hikes = yield Hike.query().table('hikes')
+			.where('user_id', user_id)
+			.where('trail_id', trail_id)
+		response.status(201).json(hikes)	
+	}
+
 
 	* update(request, response){
 		let user = request.authUser;

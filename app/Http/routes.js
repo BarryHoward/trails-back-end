@@ -40,8 +40,11 @@ Route.delete('points/:point_id', 'PointsController.delete').middleware('auth')
 Route.post('/hikes', 'HikesController.create').middleware('auth')
 Route.delete('/hikes/:hike_id', 'HikesController.delete').middleware('auth')
 Route.patch('/hikes/:hike_id', 'HikesController.update').middleware('auth')
-Route.get('/hikes/user/:user_id', 'HikesController.indexTrails')
-Route.get('/hikes/user/:user_id/trail/:trail_id', 'HikesController.indexHikes')
+
+Route.get('/hikes', 'HikesController.index')
+Route.get('/hikes/users/:user_id', 'HikesController.indexUser')
+Route.get('/hikes/users/:user_id/trails', 'HikesController.indexUserTrails')
+Route.get('/hikes/users/:user_id/trails/:trail_id', 'HikesController.indexUserTrailHikes')
 
 
 
