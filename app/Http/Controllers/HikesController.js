@@ -1,6 +1,7 @@
 'use strict'
 
 const Hike = use('App/Model/Hike')
+const Trail = use('App/Model/Trail')
 
 class HikesController {
 
@@ -27,10 +28,15 @@ class HikesController {
 
 	* indexUserTrails(request, response){
 		let user_id = request.param("user_id")
-		let trails = yield Hike.query().table('hikes')
+		let trails = yield Trail.query().table('trails')
 			.where('hikes.user_id', user_id)
-			.innerJoin('trails', 'hikes.trail_id', 'trails.id')
-			.groupBy('hikes.trail_id')
+			.innerJoin('hikes', 'trails.id', 'hikes.trail_id')
+			.groupBy('trails.id')
+
+		// let trails = yield Hike.query().table('hikes')
+		// 	.where('hikes.user_id', user_id)
+		// 	.innerJoin('trails', 'hikes.trail_id', 'trails.id')
+		// 	.groupBy('hikes.trail_id')
 		response.status(201).json(trails)	
 	}
 
