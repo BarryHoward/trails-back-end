@@ -2,7 +2,7 @@
 const User = use('App/Model/User')
 const Hash = use('Hash')
 
-class UserController {
+class UsersController {
 
 	* login (request, response){
 		let data = request.only('username', 'password')
@@ -43,4 +43,4 @@ class UserController {
 
 }
 
-module.exports = UserController
+module.exports = UsersController

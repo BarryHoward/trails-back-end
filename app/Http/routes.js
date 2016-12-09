@@ -20,9 +20,9 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 
 
-Route.post('/login', 'UserController.login');
-Route.post('/users', 'UserController.create');
-Route.get('/users', 'UserController.index');
+Route.post('/login', 'UsersController.login');
+Route.post('/users', 'UsersController.create');
+Route.get('/users', 'UsersController.index');
 
 Route.get('/trails', 'TrailsController.index');
 Route.get('/trails/:trail_id', 'TrailsController.show');
@@ -36,5 +36,15 @@ Route.get('points/:point_id', 'PointController.show')
 Route.post('/points', 'PointsController.create').middleware('auth')
 Route.patch('points/:point_id', 'PointsController.update').middleware('auth')
 Route.delete('points/:point_id', 'PointsController.delete').middleware('auth')
+
+Route.post('/hikes', 'HikesController.create').middleware('auth')
+Route.delete('/hikes/:hike_id', 'HikesController.delete').middleware('auth')
+Route.update('/hikes/:hike_id', 'HikesController.update').middleware('auth')
+Route.get('/hikes/user/:user_id', 'HikesController.indexTrails')
+Route.get('/hikes/user/:user_id/trail/:trail_id', 'HikesController.indexHikes')
+
+
+
+
 
 
