@@ -28,7 +28,7 @@ class HikesController {
 	* indexUserTrails(request, response){
 		let user_id = request.param("user_id")
 		let trails = yield Hike.query().table('hikes')
-			.where('user_id', user_id)
+			.where('hikes.user_id', user_id)
 			.innerJoin('trails', 'hikes.trail_id', 'trails.id')
 			.groupBy('trails.id')
 		response.status(201).json(trails)	
