@@ -51,7 +51,7 @@ class HikesController {
 		} else if (hike.user_id !== user.id){
 			response.status(403).json({error: "Hike does not belong to user"})
 		} else {
-			yield Hike.delete();
+			yield hike.delete();
 			response.status(204).send()
 		}
 	}
