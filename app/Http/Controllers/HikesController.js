@@ -29,15 +29,10 @@ class HikesController {
 	* indexUserTrails(request, response){
 		let user_id = request.param("user_id")
 		let trails = yield Trail.query().table('trails')
-			.select('trails.title', 'trails.img_url', 'trails.max_elevation', 'trails.min_elevation', 'trails.distance', 'trails.username')
+			.select('trails.id', 'trails.title', 'trails.img_url', 'trails.max_elevation', 'trails.min_elevation', 'trails.distance', 'trails.username')
 			.where('hikes.user_id', user_id)
 			.innerJoin('hikes', 'trails.id', 'hikes.trail_id')
 			.groupBy('trails.id')
-
-		// let trails = yield Hike.query().table('hikes')
-		// 	.where('hikes.user_id', user_id)
-		// 	.innerJoin('trails', 'hikes.trail_id', 'trails.id')
-		// 	.groupBy('hikes.trail_id')
 		response.status(201).json(trails)	
 	}
 
