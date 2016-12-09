@@ -20,7 +20,8 @@ class HikesController {
 
 	* indexUser(request, response){
 		let user_id = request.param("user_id")
-		let hikes = yield Hike.findBy('user_id', user_id)
+		let hikes = yield Hike.query().table('hikes')
+			.where('user_id', user_id)
 		response.status(201).json(hikes)
 	}
 
