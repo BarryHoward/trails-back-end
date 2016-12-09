@@ -37,7 +37,7 @@ class HikesController {
 			response.status(403).json({error: "Hike does not belong to user"})
 		} else {
 			hike.fill(data)
-			yield Hike.save()
+			yield hike.save()
 			response.status(201).json(hike)
 		}
 	}
