@@ -5,7 +5,7 @@ const Hike = use('App/Model/Hike')
 class HikesController {
 
 	* create (request, response){
-		let user = request.authUser;
+		let user = request.authUser
 		let data = request.only('trail_id', 'title', 'start_date', 'end_date', 'description', 'path')
 		data.user_id = user.id
 		let hike = yield Hike.create(data)
@@ -54,6 +54,7 @@ class HikesController {
 			yield Hike.delete();
 			response.status(204).send()
 		}
+	}
 
 
 
