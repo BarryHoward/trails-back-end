@@ -30,6 +30,7 @@ Route.get('/trails/:trail_id', 'TrailsController.show');
 Route.post('/trails', 'TrailsController.create').middleware('auth')
 Route.patch('/trails/:trail_id', 'TrailsController.update').middleware('auth')
 Route.delete('/trails/:trail_id', 'TrailsController.delete').middleware('auth')
+Route.get('/trails/users/:user_id', 'TrailsController.showByUser')
 
 Route.get('trails/:trail_id/points', 'PointsController.index')
 Route.get('points/:point_id', 'PointController.show')

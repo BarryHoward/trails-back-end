@@ -66,6 +66,13 @@ class TrailsController {
 		response.status(200).json(trail)
 	}
 
+	* showByUser(request, response){
+		let user_id = request.param("user_id")
+		let trails = Trail.query().table('trails')
+				.where('user_id', user_id)
+		response.status(200).json(trails)
+	}
+
 }
 
 module.exports = TrailsController
