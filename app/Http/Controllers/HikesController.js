@@ -7,7 +7,8 @@ class HikesController {
 
 	* create (request, response){
 		let user = request.authUser
-		let data = request.only('trail_id', 'title', 'start_date', 'end_date', 'description', 'path')
+		let data = request.only('trail_id', 'title', 'start_date', 'end_date', 'description', 
+			'path', 'start', 'end', 'distance')
 		data.user_id = user.id
 		let hike = yield Hike.create(data)
 		response.status(201).json(hike)	
@@ -48,7 +49,8 @@ class HikesController {
 
 	* update(request, response){
 		let user = request.authUser;
-		let data = request.only('title', 'start_date', 'end_date', 'description', 'path')	
+		let data = request.only('title', 'start_date', 'end_date', 'description', 
+			'path', 'start', 'end', 'distance')	
 		let hike_id = request.param("hike_id") // get id of current hike
 		let hike = yield Hike.findBy('id', hike_id) // get current hike
 
