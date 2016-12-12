@@ -1,6 +1,6 @@
 'use strict'
 
-// const User = use('App/Model/User')
+const User = use('App/Model/User')
 const Hike = use('App/Model/Hike')
 const Trail = use('App/Model/Trail')
 
@@ -16,9 +16,9 @@ class HikesController {
 		let count = yield Hike.query().table('hikes')
 			.count('*')
 			.where('user_id', user.id);
-		console.log(user)
-		user.hikes = count;
-		yield user.save();
+		let update_user = yield User.findBy('id', user.id)
+		update_user.hikes = count;
+		yield update_user.save();
 
 		response.status(201).json(hike)	
 	}
