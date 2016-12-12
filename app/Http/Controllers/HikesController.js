@@ -21,15 +21,10 @@ class HikesController {
 			.countDistinct('trail_id')
 			.where('user_id', user.id)
 
-		console.log(hikes_count, trails_count)
-
-
 
 		let update_user = yield User.findBy('id', user.id)
 		update_user.hikes = hikes_count[0].count;
 		update_user.trails_hiked = trails_count[0].count;
-
-
 		yield update_user.save();
 
 		response.status(201).json(hike)	
@@ -90,12 +85,27 @@ class HikesController {
 		let user = request.authUser;
 		let hike_id = request.param("hike_id") // get id of current hike
 		let hike = yield Hike.findBy('id', hike_id) // get current hike
+
 		if (!hike){
 			response.status(404).json({error: "Hike not found"})
 		} else if (hike.user_id !== user.id){
 			response.status(403).json({error: "Hike does not belong to user"})
 		} else {
 			yield hike.delete();
+
+			let hikes_count = yield Hike.query().table('hikes')
+				.count('*')
+				.where('user_id', user.id);
+
+			let trails_count = yield Hike.query().table('hikes')
+				.countDistinct('trail_id')
+				.where('user_id', user.id)
+
+			let update_user = yield User.findBy('id', user.id)
+			update_user.hikes = hikes_count[0].count;
+			update_user.trails_hiked = trails_count[0].count;
+
+			yield update_user.save();
 			response.status(204).send()
 		}
 	}
