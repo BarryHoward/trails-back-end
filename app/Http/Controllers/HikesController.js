@@ -11,6 +11,11 @@ class HikesController {
 			'path', 'start', 'end', 'distance')
 		data.user_id = user.id
 		let hike = yield Hike.create(data)
+
+		let count = yield Hike.query().table('hikes')
+			.count('*')
+			.where('user_id', user.id);
+		console.log(count);
 		response.status(201).json(hike)	
 	}
 

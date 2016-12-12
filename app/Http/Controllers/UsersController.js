@@ -33,10 +33,9 @@ class UsersController {
 		let data = request.only('username', 'password', 'email', 'info', 'img_url')
 		let user_id = request.param("user_id") 
 		let user = yield User.findBy('id', user_id)
-		console.log(logged_user, user)
 
 		if (!user){
-			response.status(404).json({error: "Trail not found"})
+			response.status(404).json({error: "User not found"})
 		} else if(logged_user.id !== user.id){
 			response.status(403).json({error: "Not logged-in to correct user"})
 		} else {
@@ -50,6 +49,16 @@ class UsersController {
 		const user_list = yield User.query().table('users')
 		.orderBy('username', 'asc')
 		response.status(200).json(user_list)
+	}
+
+	* show (request, response){
+		let user_id = request.param("user_id") 
+		let user = yield User.findBy('id', user_id)
+		if (!user){
+			response.status(404).json({error: "User not found"})
+		} else {
+			response.status(200).json(user)
+		}
 	}
 
 }
