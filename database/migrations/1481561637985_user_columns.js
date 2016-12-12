@@ -8,6 +8,9 @@ class UserColumnsTableSchema extends Schema {
     this.table('users', (table) => {
       table.text('info')
       table.text('img_url')
+      table.integer('trails_created')
+      table.integer('trails_hiked')
+      table.integer('hikes')
     })
   }
 
@@ -15,6 +18,7 @@ class UserColumnsTableSchema extends Schema {
     this.table('users', (table) => {
       table.dropColumn('info')
       table.dropColumn('img_url')
+      table.dropColumn('hikes')
     })
   }
 
