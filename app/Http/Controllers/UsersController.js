@@ -22,17 +22,27 @@ class UsersController {
 	}
 
 	* create (request, response){
-		// let admin = request.authUser;
-		// if (admin.admin){
-			console.log("hi");
 			let data = request.only('username', 'password', 'email')
 			data.password = yield Hash.make('password')
-			// data.admin = false;
 			let user = yield User.create(data)
 			response.status(201).json(user)
-		// } else {
-		// 	response.status(403)
-		// }
+	}
+
+	* update (request, response){
+		let logged_user = request.authUser;
+		let data = request.only('username', 'password', 'email', 'info', 'img_url')
+		let user_id = request.param("user_id") 
+		let user = yield User.findBy('id', user_id)
+		 
+		if (!user){
+			response.status(404).json({error: "Trail not found"})
+		} else if(logged_user.id !== user.id){
+			response.status(403).json({error: "Not logged-in to correct user"})
+		} else {
+			user.fill(data)
+			yield user.save()
+			response.status(201).json(user)
+		}
 	}
 
 	* index (request, response){
