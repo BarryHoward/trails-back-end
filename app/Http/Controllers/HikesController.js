@@ -16,7 +16,7 @@ class HikesController {
 		let count = yield Hike.query().table('hikes')
 			.count('*')
 			.where('user_id', user.id);
-
+		console.log(user)
 		user.hikes = count;
 		yield user.save();
 
