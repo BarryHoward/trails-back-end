@@ -23,7 +23,7 @@ Route.on('/').render('welcome')
 Route.post('/login', 'UsersController.login');
 Route.post('/users', 'UsersController.create');
 Route.get('/users', 'UsersController.index');
-Route.patch('/users/:user_id', 'UsersController.update');
+Route.patch('/users/:user_id', 'UsersController.update').middleware('auth');
 
 Route.get('/trails', 'TrailsController.index');
 Route.get('/trails/:trail_id', 'TrailsController.show');

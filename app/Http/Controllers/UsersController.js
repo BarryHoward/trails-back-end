@@ -33,7 +33,8 @@ class UsersController {
 		let data = request.only('username', 'password', 'email', 'info', 'img_url')
 		let user_id = request.param("user_id") 
 		let user = yield User.findBy('id', user_id)
-		 
+		console.log(logged_user, user)
+
 		if (!user){
 			response.status(404).json({error: "Trail not found"})
 		} else if(logged_user.id !== user.id){
