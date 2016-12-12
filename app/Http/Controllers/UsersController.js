@@ -31,6 +31,7 @@ class UsersController {
 	* update (request, response){
 		let logged_user = request.authUser;
 		let data = request.only('username', 'password', 'email', 'info', 'img_url')
+		data.password = yield Hash.make('password')
 		let user_id = request.param("user_id") 
 		let user = yield User.findBy('id', user_id)
 

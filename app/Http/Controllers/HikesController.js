@@ -13,11 +13,23 @@ class HikesController {
 		data.user_id = user.id
 		let hike = yield Hike.create(data)
 
-		let count = yield Hike.query().table('hikes')
+		let hikes_count = yield Hike.query().table('hikes')
 			.count('*')
 			.where('user_id', user.id);
+
+		let trails_count = yield Hike.query().table('hikes')
+			.countDistinct('trail_id')
+			.where('user_id', user.id)
+
+		console.log(hikes_count, trails_count)
+
+
+
 		let update_user = yield User.findBy('id', user.id)
-		update_user.hikes = count[0].count;
+		update_user.hikes = hikes_count[0].count;
+		update_user.trails_hiked = trails_count[0].count;
+
+
 		yield update_user.save();
 
 		response.status(201).json(hike)	
