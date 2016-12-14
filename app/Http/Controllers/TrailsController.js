@@ -106,6 +106,7 @@ class TrailsController {
 		let user_id = request.param("user_id")
 		let trails =  yield Trail.query().table('trails')
 				.where('user_id', user_id)
+				console.log(trails)
 		response.status(200).json(trails)
 	}
 
